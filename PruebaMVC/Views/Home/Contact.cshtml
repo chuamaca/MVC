@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div>
+
+    @using (Html.BeginForm("Contact", "Home", FormMethod.Get))
+    {
+        <label for="search">Buscar por nombre:</label>
+        <input type="text" name="nmbrand" id="search" value="@ViewBag.CurrentFilter" />
+        <input type="submit" value="Buscar" />
+    }
+    @*<button type="button" name="btnBuscar" class="btn-default" href="@Url.Action("Buscar", "Home")">Buscar</button>*@
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descr</th>
+            <th>Estado</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody class="tab-pane">
+        @foreach (var item in ViewBag.MiLista)
+        {
+            <tr>
+                <td>@item.idbrand</td>
+                <td>@item.nmbrand</td>
+                <td>@item.descbrand</td>
+                <td>@item.stbrand</td>
+                <td>
+                    <!-- Enlace para eliminar con un parámetro de ID -->
+                    <a href="@Url.Action("Eliminar", "Home", new { id = item.idbrand })">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<address>
+    One Microsoft Way<br />
+    Redmond, WA 98052-6399<br />
+    <abbr title="Phone">P:</abbr>
+    425.555.0100
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>
